@@ -17,23 +17,27 @@ const formsValue = {
 
 
 function App() {
+
+  const [members, setMembers] = useState(myTeam);
+
+  const [val, setVal] = useState(formsValue);
+
+  const update = (inputName, inputValue) => {
+    setVal({...val, [inputName]: inputValue})
+  }
+
+  const submit = () => {
+    const teamMember = {
+      name: val.name.trim(),
+      email: val.email.trim(),
+      role: val.role.trim()
+    }
+
+    if(!teamMember.name || !teamMember.email || !teamMember.role) return
+    setMembers([...members, teamMember]);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
   );
 }
 
